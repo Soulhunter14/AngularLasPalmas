@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { APP_ROUTES } from './route/routes';
 import { ContactsDetailComponent } from './contacts-detail/contacts-detail.component';
 import { ContactsService } from './services/contacts.service';
+import { EventBusService } from './services/event-bus.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
 
@@ -19,9 +20,6 @@ import { FormsModule } from '@angular/forms';
 import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-detail-view.component';
 import { TabComponent } from './tabs/tab/tab.component';
 import { TabsComponent } from './tabs/tabs/tabs.component';
-
-
-
 
 @NgModule({
   declarations: [ContactsAppComponent,
@@ -41,7 +39,7 @@ import { TabsComponent } from './tabs/tabs/tabs.component';
     FormsModule,
     MatTabsModule
   ],
-  providers : [ContactsService],
+  providers : [ContactsService, EventBusService],
   bootstrap: [ContactsAppComponent]
 })
 export class ContactsModule {
