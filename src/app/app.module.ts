@@ -20,6 +20,8 @@ import { FormsModule } from '@angular/forms';
 import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-detail-view.component';
 import { TabComponent } from './tabs/tab/tab.component';
 import { TabsComponent } from './tabs/tabs/tabs.component';
+import { AboutComponent } from './about/about.component';
+import { ContactsDasboardComponent } from './contacts-dasboard/contacts-dasboard.component';
 
 @NgModule({
   declarations: [ContactsAppComponent,
@@ -28,7 +30,9 @@ import { TabsComponent } from './tabs/tabs/tabs.component';
     ContactsEditorComponent,
     ContactsDetailViewComponent,
     TabComponent,
-    TabsComponent],
+    TabsComponent,
+    AboutComponent,
+    ContactsDasboardComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

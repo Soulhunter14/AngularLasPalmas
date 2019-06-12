@@ -11,7 +11,6 @@ export class ContactsDetailComponent implements OnInit {
 
   @Input() contact: Contact;
   @Output() edit = new EventEmitter<Contact>();
-  @Output() back = new EventEmitter<Contact>();
 
   constructor() {
   }
