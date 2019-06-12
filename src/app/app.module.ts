@@ -3,6 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ContactsMaterialModule } from './contacts-material.module';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { ContactsAppComponent } from './app.component';
 import { ContactsListComponent } from './contacts-list/contacts-list.component';
@@ -37,7 +38,8 @@ import { TabsComponent } from './tabs/tabs/tabs.component';
     FlexLayoutModule,
     RouterModule.forRoot(APP_ROUTES),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatTabsModule
   ],
   providers : [ContactsService],
   bootstrap: [ContactsAppComponent]
