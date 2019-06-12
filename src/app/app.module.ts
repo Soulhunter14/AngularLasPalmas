@@ -23,6 +23,9 @@ import { TabsComponent } from './tabs/tabs/tabs.component';
 import { AboutComponent } from './about/about.component';
 import { ContactsDasboardComponent } from './contacts-dasboard/contacts-dasboard.component';
 
+import { confirmNavigationGuard } from './route/guard';
+import { ConfirmDeactivationDialogComponent } from './confirm-deactivation-dialog/confirm-deactivation-dialog.component';
+
 @NgModule({
   declarations: [ContactsAppComponent,
     ContactsListComponent,
@@ -32,7 +35,8 @@ import { ContactsDasboardComponent } from './contacts-dasboard/contacts-dasboard
     TabComponent,
     TabsComponent,
     AboutComponent,
-    ContactsDasboardComponent],
+    ContactsDasboardComponent,
+    ConfirmDeactivationDialogComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -43,7 +47,11 @@ import { ContactsDasboardComponent } from './contacts-dasboard/contacts-dasboard
     FormsModule,
     MatTabsModule
   ],
-  providers : [ContactsService, EventBusService],
+  providers : [ContactsService, EventBusService,
+    {
+      provide: 'ConfirmNavigationGuard',
+      useValue: confirmNavigationGuard
+    }],
   bootstrap: [ContactsAppComponent]
 })
 export class ContactsModule {

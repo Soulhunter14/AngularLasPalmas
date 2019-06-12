@@ -11,7 +11,7 @@ export const APP_ROUTES = [
     children: [
       { path: '', redirectTo: 'contact/0', pathMatch: 'full' },
       { path: 'contact/:id', component: ContactsDetailViewComponent },
-      { path: 'contact/:id/edit', component: ContactsEditorComponent }
+      { path: 'contact/:id/edit', component: ContactsEditorComponent, canDeactivate: ['ConfirmNavigationGuard'] }
     ]
   },
   { path: 'about', component: AboutComponent },

@@ -13,6 +13,7 @@ import { EventBusService } from '../services/event-bus.service';
 export class ContactsEditorComponent implements OnInit {
 
   contact: Contact;
+  savedChanges: Boolean;
 
   constructor(private contactsService: ContactsService,
     private route: ActivatedRoute,
@@ -32,6 +33,7 @@ export class ContactsEditorComponent implements OnInit {
   public save(contact: Contact) {
     this.contactsService.updateContact(contact)
     .subscribe( s => {
+      this.savedChanges = true;
       this._location.back();
     });
   }
