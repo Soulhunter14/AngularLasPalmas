@@ -1,0 +1,41 @@
+<div class="trm-contacts-detail">
+    <mat-card *ngIf="contact">
+      <mat-card-title-group class="fullBleed" (deferLoad)="image.show = true">
+          <img mat-card-md-image [src]="contact?.image">
+          <mat-card-title>{{contact?.name}}</mat-card-title>
+          <mat-card-subtitle>{{contact?.email}}</mat-card-subtitle>
+        </mat-card-title-group>
+      <trm-tabs>
+          <trm-tab title="General" fxLayout="column">
+              <mat-card-content>
+                  <dl>
+                    <dt>Phone:</dt>
+                    <dd>{{contact?.phone}}</dd>
+                    <dt>Website:</dt>
+                    <dd>{{contact?.website}}</dd>
+                    <dt>Birthday:</dt>
+                    <dd>{{contact?.birthday}}</dd>
+                  </dl>
+                </mat-card-content>
+          </trm-tab>
+          <trm-tab title="Address" fxLayout="column">
+              <mat-card-content>
+                  <dl>
+                    <dt>Street:</dt>
+                    <dd>{{contact?.address.street}}</dd>
+                    <dt>Zip:</dt>
+                    <dd>{{contact?.address.zip}}</dd>
+                    <dt>City:</dt>
+                    <dd>{{contact?.address.city}}</dd>
+                  </dl>
+                </mat-card-content>
+          </trm-tab>
+      </trm-tabs>    
+      <mat-card-actions fxLayout fxLayoutAlign="center center">
+        <a mat-button title="Go back to list" (click)="back.emit()">Go Back</a>
+      </mat-card-actions>
+      <mat-card-actions fxLayout fxLayoutAlign="center center">
+        <a mat-button title="Go to Edit" (click)="edit.emit(contact)">Edit</a>
+      </mat-card-actions>
+    </mat-card>
+  </div>
