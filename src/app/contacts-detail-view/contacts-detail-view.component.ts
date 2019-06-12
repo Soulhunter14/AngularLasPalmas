@@ -22,7 +22,11 @@ export class ContactsDetailViewComponent implements OnInit {
   ngOnInit() {
     let id = this.route.snapshot.params['id'];
     this.contact$ = this.contactsService.getContact(id);
-    this.eventBus.emit('appTitleChange', 'Contact');
+
+    this.contact$.subscribe( contact => {
+      this.eventBus.emit('appTitleChange', contact.name);
+    } );
+
   }
 
   navigateToList() {
