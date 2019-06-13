@@ -23,15 +23,6 @@ export class ContactsListComponent implements OnInit {
     private eventBus: EventBusService,
     private store: Store<ApplicationState>) {  }
 
-  // ngOnInit() {
-  //   this.contacts$ = this.terms$.pipe(
-  //     debounceTime(400),
-  //     distinctUntilChanged(),
-  //     startWith(''),
-  //     switchMap(term => this.contactsService.searchContacts(term)));
-  //     this.eventBus.emit('appTitleChange', 'List');
-  // }
-
   ngOnInit() {
     let query = (state) => state.contacts.list;
     this.contacts$ = this.store.pipe(select(query));

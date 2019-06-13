@@ -12,7 +12,7 @@ export function contactsReducer(state = INITAL_STATE, action: ContactsActions ) 
   switch (action.type) {
     case ContactsActionTypes.LOAD_CONTACTS_SUCCESS:
       return {
-        ...state, list: action.payload
+        ...state, list: action.payload, loaded: true
       };
     case ContactsActionTypes.SELECT_CONTACT:
       return { ...state, selectedContactId: action.payload };

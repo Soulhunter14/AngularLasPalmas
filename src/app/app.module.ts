@@ -23,12 +23,13 @@ import { TabsComponent } from './tabs/tabs/tabs.component';
 import { AboutComponent } from './about/about.component';
 import { ContactsDasboardComponent } from './contacts-dasboard/contacts-dasboard.component';
 
-import { confirmNavigationGuard } from './guards/guard';
+import { ConfirmNavigationGuard } from './guards/guard';
+import { ContactExistsGuard } from './guards/contact-exists.guard';
 import { StoreModule } from '@ngrx/store';
 import { ROOT_REDUCER } from './state-management/root-reducer';
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
- 
+
 
 @NgModule({
   declarations: [ContactsAppComponent,
@@ -55,8 +56,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
   providers : [ContactsService, EventBusService,
     {
       provide: 'ConfirmNavigationGuard',
-      useValue: confirmNavigationGuard
-    }],
+      useValue: ConfirmNavigationGuard
+    }, ContactExistsGuard],
   bootstrap: [ContactsAppComponent]
 })
 export class ContactsModule {
