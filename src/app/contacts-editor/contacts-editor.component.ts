@@ -4,6 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 import { Contact } from '../models/contact';
 import { Location } from '@angular/common';
 import { EventBusService } from '../services/event-bus.service';
+import { Observable } from 'rxjs';
+import { select, Store } from '@ngrx/store';
+import { map, tap } from 'rxjs/operators';
+import { UpdateContactAction, SelectContactAction } from '../state/contacts/contacts.actions';
+import { ApplicationState } from '../state-management/root-reducer';
 
 @Component({
   selector: 'trm-contacts-editor',
@@ -12,28 +17,32 @@ import { EventBusService } from '../services/event-bus.service';
 })
 export class ContactsEditorComponent implements OnInit {
 
-  contact: Contact;
+  contact$: Observable<Contact>;
   savedChanges: Boolean;
 
   constructor(private contactsService: ContactsService,
     private route: ActivatedRoute,
     private _location: Location,
-    private eventBus: EventBusService) { }
+    private eventBus: EventBusService,
+    private store: Store<ApplicationState>) { }
 
   ngOnInit() {
-    let id = this.route.snapshot.params['id'];
-
-    this.contactsService.getContact(id)
-    .subscribe(contact => {
-        this.contact = contact;
-        this.eventBus.emit('appTitleChange', 'Edit ' + contact.name);
+    this.route.params.subscribe(params => {
+      this.store.dispatch(new SelectContactAction(params["id"]));
     });
+
+    this.contact$ = this.store.pipe(
+      select(s => s.contacts.list.find(contact => contact.id == s.contacts.selectedContactId)),
+      map(contact => ({...contact})),
+      tap(console.log)
+      );
   }
 
   public save(contact: Contact) {
     this.contactsService.updateContact(contact)
     .subscribe( s => {
       this.savedChanges = true;
+      this.store.dispatch(new UpdateContactAction(contact));
       this._location.back();
     });
   }

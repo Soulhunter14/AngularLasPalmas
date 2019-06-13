@@ -23,8 +23,9 @@ import { TabsComponent } from './tabs/tabs/tabs.component';
 import { AboutComponent } from './about/about.component';
 import { ContactsDasboardComponent } from './contacts-dasboard/contacts-dasboard.component';
 
-import { confirmNavigationGuard } from './route/guard';
-import { ConfirmDeactivationDialogComponent } from './confirm-deactivation-dialog/confirm-deactivation-dialog.component';
+import { confirmNavigationGuard } from './guards/guard';
+import { StoreModule } from '@ngrx/store';
+import { ROOT_REDUCER } from './state-management/root-reducer';
 
 @NgModule({
   declarations: [ContactsAppComponent,
@@ -35,8 +36,7 @@ import { ConfirmDeactivationDialogComponent } from './confirm-deactivation-dialo
     TabComponent,
     TabsComponent,
     AboutComponent,
-    ContactsDasboardComponent,
-    ConfirmDeactivationDialogComponent],
+    ContactsDasboardComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -45,7 +45,8 @@ import { ConfirmDeactivationDialogComponent } from './confirm-deactivation-dialo
     RouterModule.forRoot(APP_ROUTES),
     HttpClientModule,
     FormsModule,
-    MatTabsModule
+    MatTabsModule,
+    StoreModule.forRoot(ROOT_REDUCER)
   ],
   providers : [ContactsService, EventBusService,
     {
