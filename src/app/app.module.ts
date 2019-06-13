@@ -27,6 +27,9 @@ import { confirmNavigationGuard } from './guards/guard';
 import { StoreModule } from '@ngrx/store';
 import { ROOT_REDUCER } from './state-management/root-reducer';
 
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+ 
+
 @NgModule({
   declarations: [ContactsAppComponent,
     ContactsListComponent,
@@ -46,7 +49,8 @@ import { ROOT_REDUCER } from './state-management/root-reducer';
     HttpClientModule,
     FormsModule,
     MatTabsModule,
-    StoreModule.forRoot(ROOT_REDUCER)
+    StoreModule.forRoot(ROOT_REDUCER),
+    StoreDevtoolsModule.instrument({maxAge: 50})
   ],
   providers : [ContactsService, EventBusService,
     {
